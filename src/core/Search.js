@@ -78,7 +78,7 @@ const Search = () => {
                     <div className='input-group input-group-lg'>
                         <div className='input-group-prepend'>
                             <select className='btn mr-2' onChange={handleChange('category')}>
-                                <option value='All'>All</option>
+                                <option value='All'>All </option>
                                 {categories.map((cat, idx) => (<option key={idx} value={cat._id}> {cat.name} </option>) )}
                             </select>
                         </div>
