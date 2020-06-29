@@ -1,67 +1,76 @@
-import {API} from '../config';
-import queryString from 'query-string'
+import { API } from "../config";
+import queryString from "query-string";
 
-export const getProducts = (sortBy) => {
+export const getProducts = sortBy => {
     return fetch(`${API}/products?sortBy=${sortBy}&order=desc&limit=6`, {
-        method:'GET',
+        method: "GET"
     })
-    .then(response => {
-        return response.json()
-    })
-    .catch(err => console.log(err))
-}
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
 
 export const getCategories = () => {
     return fetch(`${API}/categories`, {
-        method:'GET',
+        method: "GET"
     })
-    .then(response => {
-        return response.json()
-    })
-    .catch(err => console.log(err))
-}
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
 
 export const getFilteredProducts = (skip, limit, filters = {}) => {
     const data = {
         limit,
         skip,
         filters
-    }
+    };
     return fetch(`${API}/products/by/search`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-            Accept: 'application/json',
-            "Content-Type": "application/json",
-            
+            Accept: "application/json",
+            "Content-Type": "application/json"
         },
-        body: JSON.stringify(data)//we are sending the data to the backend
+        body: JSON.stringify(data)
     })
-    .then(response => {
-        return response.json()
-    })
-    .catch(err => {
-        console.log(err)
-    })
-}
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};
 
 export const list = params => {
-    const query = queryString.stringify(params)
-    console.log('query', query)
+    const query = queryString.stringify(params);
+    console.log("query", query);
     return fetch(`${API}/products/search?${query}`, {
-        method:'GET',
+        method: "GET"
     })
-    .then(response => {
-        return response.json()
-    })
-    .catch(err => console.log(err))
-}
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
 
-export const read = (productId) => {
+export const read = productId => {
     return fetch(`${API}/product/${productId}`, {
-        method: 'GET'
+        method: "GET"
     })
-    .then(response => {
-        return response.json()
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
+export const listRelated = productId => {
+    return fetch(`${API}/products/related/${productId}`, {
+        method: "GET"
     })
-    .catch(err => console.log(err))
-}
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
